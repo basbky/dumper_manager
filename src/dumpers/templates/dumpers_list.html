@@ -1,0 +1,42 @@
+{% load mathfilters %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'dumpers/css/dumpers.css' %}">
+
+<form method="get">
+  <select name="model">
+    <option value="all">Все</option>
+    {% for model in models %}
+      <option value="{{ model.name }}">{{ model.name }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Применить">
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Бортовой номер</th>
+      <th>Модель</th>
+      <th>Текущий вес</th>
+      <th>Максимальная грузоподъёмность</th>
+      <th>Перегруз, %</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dumper in dumpers %}
+      <tr>
+        <td>{{ dumper.tail_number }}</td>
+        <td>{{ dumper.model.name }}</td>
+        <td>{{ dumper.load_weight }} тон</td>
+        <td>{{ dumper.model.load_capacity }} тон</td>
+        {% if dumper.load_weight > dumper.model.load_capacity %}
+          <td>{{ dumper.load_weight|div:dumper.model.load_capacity|mul:100|sub:100|floatformat }} %</td>
+        {% else %}
+          <td>0 %</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
