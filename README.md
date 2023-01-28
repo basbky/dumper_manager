@@ -3,7 +3,6 @@
 
 ## Description
 
-- Test work for reksoft.ru (Python Developer)
 - Django app for controlling dumpers information
 - Models were covered with pytest tests
 
@@ -22,7 +21,7 @@
 
 1. Go to the project directory
 ```
-cd ~/test_reksoft
+cd ~/dumper_manager
 ```
 2. Set environment variables to the .env file
 
