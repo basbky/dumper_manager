@@ -25,10 +25,13 @@ class DumpersListView(View):
         dumpers: QuerySet[Dumper] = Dumper.objects.select_related(
             'model'
         ).all()
+        current_model = request.GET.get('model') or 'all'
         models: QuerySet[Model] = Model.objects.values()
-        if 'model' in request.GET:
-            model = request.GET.get('model')
-            if model != 'all':
-                dumpers = dumpers.filter(model__name=model)
-        context = {'dumpers': dumpers, 'models': models}
+        if current_model != 'all':
+            dumpers = dumpers.filter(model__name=current_model)
+        context = {
+            'dumpers': dumpers,
+            'models': models,
+            'current_model': current_model,
+        }
         return render(request, 'dumpers_list.html', context)
