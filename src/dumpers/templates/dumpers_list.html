@@ -7,9 +7,9 @@
 <form method="get">
   <select name="model">
     <option value="all">Все</option>
-    {% for model in models %}
-      <option value="{{ model.name }}">{{ model.name }}</option>
-    {% endfor %}
+  {% for model in models %}
+    <option value="{{ model.name }}" {% if model.name == current_model %} selected {% endif %}>{{ model.name }}</option>
+  {% endfor %}
   </select>
   <input type="submit" value="Применить">
 </form>
