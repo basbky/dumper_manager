@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "test-reksoft"
+name = "dumper_manager"
 version = "0.1.0"
 description = ""
 authors = ["basbky <markbasbky@gmail.com>"]
